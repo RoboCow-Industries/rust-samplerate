@@ -28,6 +28,10 @@ pub struct Samplerate {
     to_rate: u32,
 }
 
+// TODO: Hack to make this work for the CPAL call-back thread in rci-dsp-test.
+//       But, is this VALID?????
+unsafe impl Send for Samplerate {}
+
 impl Samplerate {
     /// Create a new samplerate converter with the given rates and channels.
     pub fn new(converter_type: ConverterType, from_rate: u32, to_rate: u32, channels: usize) -> Result<Samplerate, Error> {
